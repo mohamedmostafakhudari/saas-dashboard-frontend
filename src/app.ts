@@ -3,6 +3,7 @@ import { errorHandler } from "./common/middleware/errorHandler";
 import { notFound } from "./common/middleware/notFound";
 import authRoutes from "./modules/auth/auth.routes";
 import userRoutes from "./modules/user/user.routes";
+import productRoutes from "./modules/product/product.routes";
 import indexRouter from "./routes/index";
 
 const app: Application = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api", indexRouter);
 
 // 404 handler

@@ -45,7 +45,7 @@ Content-Type: application/json
 }
 ###
 @authToken = {{login.response.body.data.token}}
-PATCH  http://localhost:5000/api/users/69d28318767bb45ef7ecfe0a
+PATCH  http://localhost:5000/api/users/69d2857d221e488cae5d6ca1
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
@@ -54,7 +54,7 @@ Content-Type: application/json
 }
 ###
 @authToken = {{login.response.body.data.token}}
-DELETE http://localhost:5000/api/users/69d28318767bb45ef7ecfe0a
+DELETE http://localhost:5000/api/users/69d2857d221e488cae5d6ca1
 Authorization: Bearer {{authToken}}
 
 ###

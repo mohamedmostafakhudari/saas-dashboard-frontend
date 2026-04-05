@@ -1,10 +1,19 @@
-import { Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
 
 export interface IUser extends Document {
 	name: string;
 	email: string;
 	password: string;
 	role: "admin" | "user";
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export interface IProduct extends Document {
+	name: string;
+	price: number;
+	stock: number;
+	createdBy: mongoose.Types.ObjectId;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -33,6 +42,19 @@ export interface UpdateUserData {
 	name?: string;
 	email?: string;
 	role?: "admin" | "user";
+}
+
+export interface CreateProductData {
+	name: string;
+	price: number;
+	stock?: number;
+	createdBy: string;
+}
+
+export interface UpdateProductData {
+	name?: string;
+	price?: number;
+	stock?: number;
 }
 
 export interface JwtPayload {
