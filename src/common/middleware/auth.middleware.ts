@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import User from "../../modules/user/user.model";
 import { AppError } from "../errors/app-error";
+import { JwtPayload } from "../utils/types/interfaces.js";
 
 const protect = async (
 	req: Request,
@@ -21,9 +23,23 @@ const protect = async (
 		if (!secret) throw new AppError("JWT_SECRET is not defined", 500);
 
 		const decoded = jwt.verify(token, secret) as JwtPayload;
+		const userId = decoded.id;
+		if (typeof userId !== "string" || !userId) {
+			throw new AppError("Unauthorized — invalid token payload", 401);
+		}
 
-		// 3. Attach userId to request for use in controllers
-		req.userId = decoded.id;
+		// 3. Load user from DB (password field is not selected on this model)
+		const user = await User.findById(userId);
+		if (!user) {
+			throw new AppError("Unauthorized — user not found", 401);
+		}
+
+		req.user = {
+			id: user._id.toString(),
+			name: user.name,
+			email: user.email,
+			role: user.role,
+		};
 
 		next();
 	} catch (error) {

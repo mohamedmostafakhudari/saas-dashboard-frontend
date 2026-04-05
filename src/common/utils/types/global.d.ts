@@ -1,8 +1,12 @@
-// Extend Express Request
-// Adds userId to req so downstream controllers can access it
-// pure declaration file (no global name needed here)
-declare namespace Express {
-	interface Request {
-		userId: string;
+import type { AuthenticatedUser } from "./interfaces";
+
+declare global {
+	namespace Express {
+		interface Request {
+			user?: AuthenticatedUser;
+		}
 	}
 }
+
+// to tread it as a module because it has import
+export {};

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 
 export function list(req: Request, res: Response): void {
-	res.json({ success: true, module: "product", requesterId: req.userId, data: [] });
+	res.json({ success: true, module: "product", requesterId: req.user!.id, data: [] });
 }
 
 export function getById(req: Request, res: Response): void {

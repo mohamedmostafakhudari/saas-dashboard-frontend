@@ -21,6 +21,20 @@ export interface LoginResult {
 	user: AuthUser;
 }
 
-interface JwtPayload {
+/** User attached to `req` after auth; never includes password. */
+export interface AuthenticatedUser {
+	id: string;
+	name: string;
+	email: string;
+	role: "admin" | "user";
+}
+
+export interface UpdateUserData {
+	name?: string;
+	email?: string;
+	role?: "admin" | "user";
+}
+
+export interface JwtPayload {
 	id: string;
 }
