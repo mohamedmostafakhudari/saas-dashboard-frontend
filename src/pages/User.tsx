@@ -17,7 +17,6 @@ const Users = () => {
 			try {
 				const page = searchParams.get("page");
 				const limit = searchParams.get("limit");
-
 				const { data } = await api.get(`/users?page=${page}&limit=${limit}`);
 				setUsers(data.data.users);
 			} catch (err: any) {
