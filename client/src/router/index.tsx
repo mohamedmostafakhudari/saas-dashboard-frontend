@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard.tsx";
 import Login from "../pages/Login.tsx";
+import Products from "../pages/Products.tsx";
 import Users from "../pages/User.tsx";
 // import Dashboard from '../pages/Dashboard';
 // import Users from '../pages/Users';
@@ -22,7 +23,10 @@ const AppRouter = () => {
 					path="/users"
 					element={<Users />}
 				/>
-				{/* <Route path="/products"   element={<Products />} /> */}
+				<Route
+					path="/products"
+					element={<Products />}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
